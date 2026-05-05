@@ -396,6 +396,97 @@
       text-transform: uppercase;
     }
 
+    .dataset-preview {
+      margin-top: 14px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .dataset-preview table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .82rem;
+    }
+
+    .dataset-preview th,
+    .dataset-preview td {
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid #eaecf0;
+      white-space: nowrap;
+    }
+
+    .dataset-preview thead th {
+      background: var(--wash);
+      color: #344054;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .dataset-preview tbody tr:last-child td {
+      border-bottom: 0;
+      color: var(--muted);
+    }
+
+    .dim-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .dim {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .dim h3 {
+      margin-bottom: 8px;
+      font-size: 1rem;
+      color: var(--blue);
+    }
+
+    .dim p {
+      margin: 0;
+      color: #344054;
+      font-size: .92rem;
+      line-height: 1.4;
+    }
+
+    .limit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .limit {
+      padding: 18px 20px;
+      border-left: 4px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(16,24,40,.06);
+    }
+
+    .limit h3 {
+      margin-bottom: 6px;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .limit p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.42;
+    }
+
     @media (max-width: 900px) {
       body { overflow: auto; }
       .deck { height: auto; min-height: 100vh; }
@@ -459,17 +550,29 @@
     <section class="slide">
       <div class="slide-inner two-col">
         <div>
-          <p class="eyebrow">Parte 1 - Problem Statement</p>
-          <h2>Qual sistema de forecast deve avançar depois da PoC?</h2>
-          <p class="lead">Os fornecedores receberam a mesma base histórica e devolveram previsões. A escolha precisa olhar quem erra menos e, principalmente, quem erra menos onde o negócio sente mais.</p>
+          <p class="eyebrow">Parte 1 - Definição do Problema</p>
+          <h2>O problema da PoC</h2>
+          <p class="lead">A área de planejamento de demanda decidiu fazer uma PoC para escolher o futuro sistema de previsão. Foram passados <strong>3 anos de histórico</strong> aos fornecedores; cada um devolveu <strong>1 ano de previsão</strong>.</p>
+          <p class="lead"><strong>Qual fornecedor escolher? Por quê? Quais os pontos de acerto e falha de cada um?</strong></p>
         </div>
         <div class="panel">
-          <h3>Critério de decisão</h3>
-          <ul class="bullets">
-            <li>Usar as mesmas linhas para todos: loja, material e mês.</li>
-            <li>Dar mais atenção a produtos importantes e campanhas.</li>
-            <li>Olhar acurácia e risco: errar para cima gera estoque; errar para baixo gera ruptura.</li>
-          </ul>
+          <h3>Quadro de dados recebido</h3>
+          <div class="dataset-preview">
+            <table>
+              <thead>
+                <tr>
+                  <th>LOJA</th><th>EST.</th><th>MAT.</th><th>TEMPO</th><th>CAMP.</th><th>VOL_REAL</th><th>VOL_F01</th><th>VOL_F02</th><th>VOL_F03</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td>SP</td><td>1</td><td>2017-02</td><td>1</td><td>374</td><td>436,80</td><td>200</td><td>431,66</td></tr>
+                <tr><td>1</td><td>SP</td><td>1</td><td>2017-03</td><td>0</td><td>130</td><td>78,00</td><td>2</td><td>72,32</td></tr>
+                <tr><td>1</td><td>SP</td><td>1</td><td>2017-04</td><td>0</td><td>64</td><td>64,00</td><td>0</td><td>92,50</td></tr>
+                <tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption">Vem também o cadastro de material com <strong>CATEGORIA</strong>, <strong>SUBCATEG</strong>, <strong>MARCA</strong> e <strong>CLASS_ABC</strong>. Total: 147.713 linhas, 196 materiais, 94 lojas, 17 meses.</p>
         </div>
       </div>
     </section>
@@ -477,13 +580,15 @@
     <section class="slide">
       <div class="slide-inner two-col">
         <div>
-          <p class="eyebrow">Parte 1 - Assumptions and Interpretations</p>
+          <p class="eyebrow">Parte 1 - Premissas e Interpretações</p>
           <h2>Premissas que tornam a comparação justa</h2>
           <ul class="bullets">
-            <li><strong>TEMPO</strong> foi lido como mês. A avaliação tem 17 meses.</li>
-            <li>Outliers de previsão foram mantidos. Eles mostram a qualidade real entregue.</li>
-            <li>Nem toda loja vende todo material todo mês. Isso foi tratado como normal no varejo.</li>
-            <li>A comparação usa a mesma base para os três fornecedores.</li>
+            <li><strong>TEMPO</strong> foi lido como ano-mês (YYYYMM), com extensão para 2018 (mês 13 = jan/2018, …, mês 18 = jun/2018).</li>
+            <li>Mantemos os <strong>17 meses</strong> apesar do enunciado falar em "1 ano", porque há <code>VOLUME_REAL</code> válido em todos os 17 períodos — descartar reduziria poder estatístico sem ganho.</li>
+            <li><strong>Preço e margem assumidos como constantes</strong> entre SKUs, fornecedores e períodos. A base não traz preço/custo, então toda a análise é em volume, não em receita ou lucro.</li>
+            <li>Outliers de previsão foram mantidos. Eles mostram a qualidade real entregue por cada fornecedor.</li>
+            <li>Esparsidade (combinações loja×material que não aparecem em todos os meses) é tratada como parte natural do varejo, sem imputação.</li>
+            <li>A comparação usa a mesma base de linhas (mesmas chaves loja-material-período) para os três fornecedores.</li>
           </ul>
         </div>
         <div class="panel">
@@ -556,16 +661,49 @@
 
     <section class="slide">
       <div class="slide-inner">
-        <p class="eyebrow">Parte 3 - Evaluation Metrics</p>
+        <p class="eyebrow">Parte 3 - Métricas de Avaliação</p>
         <h2>Nenhuma métrica sozinha conta a história toda</h2>
         <p class="metric-note">Usamos seis métricas porque previsão não é só “acertar mais”. Também precisamos entender direção do erro, erros extremos, estabilidade e impacto nos produtos mais importantes.</p>
         <div class="formula-grid">
-          <div class="formula"><h3>WAPE</h3><code>Σ|real - previsto| / Σreal</code><p>Mostra o erro total em relação ao volume real total.</p></div>
-          <div class="formula"><h3>FA</h3><code>max(0, 1 - WAPE)</code><p>É a acurácia da previsão. Quanto maior, melhor.</p></div>
-          <div class="formula"><h3>Bias</h3><code>Σ(previsto - real) / Σreal</code><p>Mostra se o fornecedor costuma prever acima ou abaixo do real.</p></div>
-          <div class="formula"><h3>MAE</h3><code>média |real - previsto|</code><p>Mostra o erro médio em unidades.</p></div>
-          <div class="formula"><h3>RMSE</h3><code>sqrt(média erro²)</code><p>Penaliza erros muito grandes. Ajuda a achar falhas graves.</p></div>
-          <div class="formula"><h3>Scorecard</h3><code>FA global + Classe A + campanha + Top-20 + consistência</code><p>Junta os critérios mais importantes para a decisão.</p></div>
+          <div class="formula"><h3>WAPE</h3><code>Σ|real - previsto| / Σreal</code><p>Erro relativo global, normalizado pelo volume total. <strong>Métrica principal.</strong></p></div>
+          <div class="formula"><h3>FA</h3><code>max(0, 1 - WAPE)</code><p>Acurácia da previsão. Quanto maior, melhor.</p></div>
+          <div class="formula"><h3>Bias</h3><code>Σ(previsto - real) / Σreal</code><p>Viés direcional. &gt;0 superestima, &lt;0 subestima.</p></div>
+          <div class="formula"><h3>MAE</h3><code>média |real - previsto|</code><p>Erro médio absoluto, mesma unidade do volume.</p></div>
+          <div class="formula"><h3>RMSE</h3><code>√média(erro²)</code><p>Penaliza erros muito grandes — expõe outliers do Forn. 03.</p></div>
+          <div class="formula"><h3>MAPE*</h3><code>média(|real - previsto| / real), real &gt; 0</code><p>Erro percentual médio por linha. Distorcido em cauda longa.</p></div>
+        </div>
+        <div class="callout" style="border-left-color: var(--blue); background: #eff6ff; color: #1e3a8a;">
+          <strong>Por que WAPE como métrica principal?</strong> Ela soma os erros absolutos e divide pelo total real, sem divisão linha a linha. Um SKU que vendeu 2 e foi previsto em 10 contribui apenas 8 unidades para o numerador — diluído no total. No MAPE, a mesma linha vira 400% e arrasta a média. MAE/RMSE/MAPE entram como auxiliares, não para ranquear.
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <p class="eyebrow">Parte 3 - Métricas de Avaliação</p>
+        <h2>O que WAPE não captura — e como cobrimos</h2>
+        <p class="lead">WAPE global é simétrico e agregado. Cinco dimensões ficam invisíveis nele e exigem métricas dedicadas.</p>
+        <div class="dim-grid">
+          <div class="dim">
+            <h3>Direção</h3>
+            <p>Over e under custam diferente no negócio. Tratamos com <strong>Bias signed</strong>.</p>
+          </div>
+          <div class="dim">
+            <h3>Distribuição</h3>
+            <p>WAPE global pode esconder fornecedor ótimo em 80% e catastrófico em 20%. Tratamos com <strong>WAPE por SKU</strong> e percentis.</p>
+          </div>
+          <div class="dim">
+            <h3>Faixa de volume</h3>
+            <p>"Top-20 SKUs" é binário. Tratamos com <strong>decis de volume</strong> (D1=cauda, D10=cabeça).</p>
+          </div>
+          <div class="dim">
+            <h3>Uplift</h3>
+            <p>Acertar nível em campanha ≠ acertar o multiplicador. Tratamos com <strong>lift accuracy</strong> isolado.</p>
+          </div>
+          <div class="dim">
+            <h3>Coverage</h3>
+            <p>Quem prevê zero por padrão difere de quem tentou e errou. Tratamos contando <strong>zeros sistemáticos</strong>.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -573,31 +711,12 @@
     <section class="slide">
       <div class="slide-inner chart-grid">
         <div>
-          <p class="eyebrow">Parte 3 - Análise temporal</p>
-          <h2>Consistência também importa</h2>
-          <p class="lead">Um fornecedor pode parecer bom no total, mas oscilar muito mês a mês. Para planejamento, isso é arriscado: a equipe precisa de uma previsão confiável todo mês.</p>
-          <ul class="bullets">
-            <li>Fornecedor 01 tem mais meses com FA alta e fecha forte em 2018.</li>
-            <li>Fornecedor 02 melhora em alguns meses, mas tem quedas relevantes.</li>
-            <li>Fornecedor 03 tem muitos meses com FA zerada e Bias positivo recorrente.</li>
-          </ul>
-        </div>
-        <div class="chart-wrap">
-          <img class="chart" src="presentation_assets/temporal_consistency.svg" alt="FA e Bias mensais por fornecedor" />
-          <p class="caption">A leitura temporal reforça a decisão: o Fornecedor 01 não vence apenas no acumulado, ele se mantém mais útil ao longo dos meses.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="slide-inner chart-grid">
-        <div>
-          <p class="eyebrow">Parte 4 - Show Metrics Results</p>
+          <p class="eyebrow">Parte 4 - Resultados das Métricas</p>
           <h2>Fornecedor 01 lidera no agregado</h2>
           <p class="lead">No resultado global, o Fornecedor 01 é o mais equilibrado. Ele erra menos no total e tem Bias bem menor que o Fornecedor 03.</p>
           <ul class="bullets">
-            <li>Forn. 01: FA 45%, WAPE 55%, Bias +6%.</li>
-            <li>Forn. 02: FA 28%, WAPE 72%, Bias +8%.</li>
+            <li>Forn. 01: FA 45%, WAPE 55%, Bias +6%, RMSE 200,38.</li>
+            <li>Forn. 02: FA 28%, WAPE 72%, Bias +8%, RMSE 219,89.</li>
             <li>Forn. 03: FA 0%, WAPE 100%, Bias +70%, RMSE 751,48.</li>
           </ul>
         </div>
@@ -634,6 +753,7 @@
             <li>Fornecedor 01 tem melhor FA em campanha: 57%.</li>
             <li>Fornecedor 02 vai melhor em campanha, mas cai muito fora dela: 11% sem campanha.</li>
             <li>Fornecedor 03 falha em campanha e cria previsões extremas.</li>
+            <li>No multiplicador de uplift (real ≈ 2,5×): Forn. 01 sub-prevê -22%, Forn. 02 sub-prevê -31%, Forn. 03 super-prevê +23% (medianas).</li>
           </ul>
           <div class="callout">O Fornecedor 03 chega a prever 220.306,61 unidades. Esse tipo de erro aumenta muito o risco de estoque.</div>
         </div>
@@ -642,34 +762,35 @@
 
     <section class="slide">
       <div class="slide-inner">
-        <p class="eyebrow">Parte 4 - Strengths and Weaknesses</p>
+        <p class="eyebrow">Parte 4 - Pontos Fortes e Fracos</p>
         <h2>Pontos fortes e fracos</h2>
         <div class="result-grid">
           <article class="supplier winner">
             <h3><span class="dot" style="background:#2f80ed"></span>Fornecedor 01</h3>
             <ul>
-              <li>Melhor FA global e melhor desempenho nos itens Classe A.</li>
-              <li>Melhor resposta em campanha e Top-20 SKUs.</li>
-              <li>Bias baixo para o contexto: +6%.</li>
-              <li>FA ainda exige plano de melhoria contínua.</li>
+              <li>Líder em FA Global (45%), Classe A (44%), Campanha (57%) e Top-20 SKUs (51%).</li>
+              <li>Bias controlado: +6%. RMSE 200,38.</li>
+              <li>Coverage saudável: ~0,7% de zeros previstos.</li>
+              <li>Sub-prevê uplift de campanha em ~22% — exige reforço operacional em meses promocionais.</li>
+              <li>std(FA) = 0,16, ligeiramente menos estável mês a mês que os outros dois (0,14).</li>
             </ul>
           </article>
           <article class="supplier">
             <h3><span class="dot" style="background:#f59e0b"></span>Fornecedor 02</h3>
             <ul>
-              <li>Segundo melhor score final.</li>
-              <li>Bias global controlado, mas acurácia baixa.</li>
-              <li>17.665 zeros previstos quando o real foi positivo.</li>
-              <li>Risco de ruptura por abdicar de prever parte do portfólio.</li>
+              <li>Bias global contido (+8%) e std(FA) = 0,14 — mais estável mês a mês.</li>
+              <li>17.665 previsões zero com real positivo (12,5% das linhas) — risco de ruptura sistemática.</li>
+              <li>Pior FA Classe A (26%) — falha nos SKUs de maior receita.</li>
+              <li>Sub-prevê uplift de campanha em ~31% — pior dos três no multiplicador.</li>
             </ul>
           </article>
           <article class="supplier">
             <h3><span class="dot" style="background:#12b76a"></span>Fornecedor 03</h3>
             <ul>
-              <li>Baixo número de previsões zero.</li>
-              <li>Over-forecast severo: Bias +70%.</li>
-              <li>FA global e FA Classe A zeradas na metodologia atual.</li>
-              <li>Extremos indicam falha de modelagem ou ausência de limites.</li>
+              <li>Outliers severos: até 220.306,61 unidades vs. máximo real de 27.912.</li>
+              <li>Over-forecast estrutural: Bias +70%, RMSE 751,48 — ~3,7× o do Forn. 01.</li>
+              <li>FA Global, Classe A e Campanha zeradas (0%).</li>
+              <li>Super-prevê uplift de campanha em ~23% — coerente com o over-forecast geral.</li>
             </ul>
           </article>
         </div>
@@ -677,15 +798,52 @@
     </section>
 
     <section class="slide">
+      <div class="slide-inner">
+        <p class="eyebrow">Parte 5 - Limitações Reconhecidas</p>
+        <h2>Limitações desta análise</h2>
+        <p class="lead">A decisão é sólida dentro do escopo dos dados disponíveis. Algumas dimensões ficaram fora do alcance da PoC e mereceriam um próximo ciclo.</p>
+        <div class="limit-grid">
+          <div class="limit">
+            <h3>Custo assimétrico do erro</h3>
+            <p>Reportamos Bias signed mas não traduzimos em dinheiro. Superestimar custa capital de giro e validade; subestimar custa ruptura. Próximo ciclo: função de perda assimétrica.</p>
+          </div>
+          <div class="limit">
+            <h3>Análise em volume, não em receita</h3>
+            <p>Sem preço de venda, custo por SKU ou margem, todo erro é tratado por unidade. Itens caros e baratos pesam igual.</p>
+          </div>
+          <div class="limit">
+            <h3>Profundidade promocional</h3>
+            <p>Temos a flag de campanha, mas não a mecânica (compre 2 leve 3, %off, encarte) nem o alcance (nacional vs. regional). Boa parte da variância em campanha viria daí.</p>
+          </div>
+          <div class="limit">
+            <h3>Sazonalidade externa</h3>
+            <p>Feriados regionais, Black Friday, Dia das Mães, eventos locais não estão modelados. Sem isso, não dá para separar erro de modelagem de evento exógeno.</p>
+          </div>
+          <div class="limit">
+            <h3>Ruptura vs. demanda zero</h3>
+            <p>Não distinguimos "vendeu zero porque não havia demanda" de "vendeu zero por falta de estoque". O segundo é dado censurado e enviesa qualquer modelo.</p>
+          </div>
+          <div class="limit">
+            <h3>Lead time e cadastro de loja</h3>
+            <p>Sem lead time de reposição, cobertura de segurança, formato/área da loja. Tudo isso afeta quanto erro o operacional consegue absorver.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
       <div class="slide-inner chart-grid">
         <div>
-          <p class="eyebrow">Parte 4 - Conclusion</p>
+          <p class="eyebrow">Parte 6 - Conclusão</p>
           <h2>Escolha recomendada: Fornecedor 01</h2>
-          <p class="lead">O Fornecedor 01 não é perfeito, mas é o melhor equilíbrio entre acurácia, produtos importantes, campanhas e risco operacional.</p>
+          <p class="lead">Score ponderado final: <strong>0,90</strong> (Forn. 01) vs. 0,68 (Forn. 02) vs. 0,10 (Forn. 03). O Forn. 01 é melhor em todas as dimensões de acurácia medidas.</p>
+          <div class="callout">
+            <strong>Veredicto operacional:</strong> Forn. 01 é a única opção viável das três. Forn. 02 ficaria como segundo plano se a empresa aceitar reconstruir o tratamento de itens de baixo volume. Forn. 03 deveria ser descartado — outliers de até 220 mil unidades são risco operacional grave, não detalhe métrico.
+          </div>
           <ul class="bullets">
-            <li>Monitorar FA global, FA Classe A e Bias como KPIs de governança.</li>
-            <li>Definir limite de Bias aceitável para evitar estoque ou ruptura.</li>
-            <li>Usar metas trimestrais de melhoria na implantação.</li>
+            <li>Monitorar FA Global, FA Classe A, Bias e zeros previstos como KPIs de governança.</li>
+            <li>Reforçar estoque promocional acima da previsão crua — vencedor sub-prevê uplift em ~22%.</li>
+            <li>Definir limite de Bias aceitável e metas trimestrais de melhoria contínua.</li>
           </ul>
         </div>
         <div class="chart-wrap">
@@ -697,7 +855,7 @@
     <div class="footer-mark">PoC Forecast · UX for Data Science</div>
     <nav class="nav" aria-label="Navegação da apresentação">
       <button id="prevBtn" type="button" aria-label="Slide anterior">‹</button>
-      <span class="counter" id="counter">1 / 13</span>
+      <span class="counter" id="counter">1 / 14</span>
       <button id="nextBtn" type="button" aria-label="Próximo slide">›</button>
     </nav>
   </main>
