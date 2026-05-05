@@ -249,6 +249,18 @@
       margin-top: 30px;
     }
 
+    .metric-note {
+      max-width: 980px;
+      margin: 0 0 24px;
+      padding: 18px 22px;
+      border-left: 5px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      background: #eaf3ff;
+      color: #1d4f8f;
+      font-size: clamp(1rem, 1.3vw, 1.16rem);
+      line-height: 1.45;
+    }
+
     .formula {
       min-height: 154px;
       padding: 20px;
@@ -651,6 +663,7 @@
       <div class="slide-inner">
         <p class="eyebrow">Parte 3 - Métricas de Avaliação</p>
         <h2>Nenhuma métrica sozinha conta a história toda</h2>
+        <p class="metric-note">Usamos seis métricas porque previsão não é só “acertar mais”. Também precisamos entender direção do erro, erros extremos, estabilidade e impacto nos produtos mais importantes.</p>
         <div class="formula-grid">
           <div class="formula"><h3>WAPE</h3><code>Σ|real - previsto| / Σreal</code><p>Erro relativo global, normalizado pelo volume total. <strong>Métrica principal.</strong></p></div>
           <div class="formula"><h3>FA</h3><code>max(0, 1 - WAPE)</code><p>Acurácia da previsão. Quanto maior, melhor.</p></div>
