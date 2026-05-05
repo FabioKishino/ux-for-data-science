@@ -1,0 +1,18 @@
+Premissas: Pedro, Victor, André
+EDA: André, Pedro, Gabriel
+Análises de Métricas: Gabriel, André
+Streamlit: Victor, Pedro
+Deploy: Victor
+Apresentação (html): Gabriel, Fábio
+Código: Victor, Fábio
+Revisão Trabalho: Fábio
+
+Pedro: Atuou na definição das premissas adotadas (interpretação de TEMPO, manutenção de outliers, tratamento de esparsidade) e contribuiu com a EDA inicial dos dados e definição dos critérios de avaliação. Também participou do desenvolvimento das telas do Streamlit.
+
+Victor: Liderou o desenvolvimento do dashboard em Streamlit e o deploy da aplicação na VPS via Docker. Contribuiu também com as premissas e definições de métricas e na estruturação geral do código do projeto.
+
+André: Trabalhou nas premissas metodológicas e foi um dos responsáveis pela EDA, identificando padrões de distribuição e esparsidade dos dados. Atuou também nas análises de métricas (WAPE, FA, Bias, RMSE).
+
+Gabriel: Conduziu as análises de métricas comparativas entre os fornecedores e a EDA exploratória do dataset. Foi também um dos responsáveis pela apresentação em HTML do trabalho.
+
+Fábio: Responsável pela apresentação em HTML e pela estruturação do código do projeto. Conduziu também a revisão final do trabalho, garantindo consistência entre notebook, dashboard e documentação.
