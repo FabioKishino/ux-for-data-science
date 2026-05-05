@@ -66,7 +66,7 @@
       pointer-events: none;
       transform: translateX(28px);
       transition: opacity .24s ease, transform .24s ease;
-      padding: 7vh 7vw 8vh;
+      padding: 5.5vh 5vw 7vh;
     }
 
     .slide.active {
@@ -76,7 +76,7 @@
     }
 
     .slide-inner {
-      width: min(1180px, 100%);
+      width: min(1280px, 100%);
       margin: 0 auto;
     }
 
@@ -131,7 +131,12 @@
     .hero-grid { grid-template-columns: 1.1fr .9fr; }
     .two-col { grid-template-columns: .86fr 1.14fr; }
     .result-grid { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
-    .chart-grid { grid-template-columns: 1fr 1fr; }
+    .chart-grid {
+      grid-template-columns: minmax(300px, .72fr) minmax(560px, 1.28fr);
+    }
+    .chart-grid.visual-left {
+      grid-template-columns: minmax(560px, 1.28fr) minmax(300px, .72fr);
+    }
 
     .panel,
     .metric,
@@ -275,6 +280,15 @@
       box-shadow: 0 14px 34px rgba(16,24,40,.07);
     }
 
+    .chart-wrap {
+      width: 100%;
+    }
+
+    .chart-wrap .chart {
+      min-height: 360px;
+      object-fit: contain;
+    }
+
     .caption {
       margin: 12px 0 0;
       color: var(--muted);
@@ -380,9 +394,10 @@
         padding: 72px 22px 96px;
       }
       .slide.active { display: grid; }
-      .hero-grid, .two-col, .result-grid, .chart-grid, .formula-grid, .stat-row {
+      .hero-grid, .two-col, .result-grid, .chart-grid, .chart-grid.visual-left, .formula-grid, .stat-row {
         grid-template-columns: 1fr;
       }
+      .chart-wrap .chart { min-height: auto; }
       .part { grid-template-columns: 1fr; gap: 6px; }
       .footer-mark { display: none; }
       .nav { right: 16px; bottom: 16px; }
@@ -484,7 +499,7 @@
             <li>A mediana é 14 meses observados por combinação.</li>
           </ul>
         </div>
-        <div>
+        <div class="chart-wrap">
           <img class="chart" src="presentation_assets/coverage_granularity.svg" alt="Granularidade e cobertura da base" />
         </div>
       </div>
@@ -502,7 +517,7 @@
             <div class="stat"><b>27.912</b><span>máximo real</span></div>
           </div>
         </div>
-        <div>
+        <div class="chart-wrap">
           <img class="chart" src="presentation_assets/volume_distribution.svg" alt="Distribuição do volume real com cauda longa" />
           <p class="caption">Essa assimetria explica por que WAPE e FA são melhores para a decisão. RMSE fica como alerta para erros extremos.</p>
         </div>
@@ -521,7 +536,7 @@
             <li>Fornecedor 03 prevê muito acima do real e gera extremos muito grandes.</li>
           </ul>
         </div>
-        <div>
+        <div class="chart-wrap">
           <img class="chart" src="presentation_assets/real_vs_forecast_distribution.svg" alt="Comparação estatística entre volume real e previsões" />
         </div>
       </div>
@@ -554,7 +569,7 @@
             <li>Forn. 03: FA 0%, WAPE 100%, Bias +70%, RMSE 751,48.</li>
           </ul>
         </div>
-        <div>
+        <div class="chart-wrap">
           <img class="chart" src="presentation_assets/global_metrics.svg" alt="Métricas globais por fornecedor" />
         </div>
       </div>
@@ -568,7 +583,7 @@
           <p class="lead">O fornecedor escolhido precisa funcionar bem nos cenários mais importantes: produtos Classe A e meses de campanha.</p>
           <div class="callout">Em campanha, o volume médio real sobe de 62,21 para 146,58 unidades. Prever esse aumento é essencial para evitar falta ou excesso de estoque.</div>
         </div>
-        <div>
+        <div class="chart-wrap">
           <img class="chart" src="presentation_assets/abc_accuracy.svg" alt="FA por Classe ABC" />
           <p class="caption">Classe A: Forn. 01 = 44%, Forn. 02 = 26%, Forn. 03 = 0%.</p>
         </div>
@@ -576,8 +591,8 @@
     </section>
 
     <section class="slide">
-      <div class="slide-inner chart-grid">
-        <div>
+      <div class="slide-inner chart-grid visual-left">
+        <div class="chart-wrap">
           <img class="chart" src="presentation_assets/campaign_accuracy.svg" alt="FA com e sem campanha promocional" />
         </div>
         <div>
@@ -641,7 +656,7 @@
             <li>Usar metas trimestrais de melhoria na implantação.</li>
           </ul>
         </div>
-        <div>
+        <div class="chart-wrap">
           <img class="chart" src="presentation_assets/final_ranking.svg" alt="Ranking final ponderado dos fornecedores" />
         </div>
       </div>
