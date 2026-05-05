@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">Analise temporal das metricas</title>
+  <desc id="desc">Grafico mensal de FA e Bias dos tres fornecedores entre fevereiro de 2017 e junho de 2018.</desc>
+  <rect width="920" height="520" fill="#ffffff"/>
+  <text x="52" y="44" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700" fill="#172033">Consistencia ao longo do tempo</text>
+  <text x="52" y="72" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" fill="#667085">Um fornecedor bom precisa manter desempenho mes a mes, nao apenas vencer no acumulado.</text>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" fill="#475467">
+    <rect x="600" y="32" width="14" height="14" rx="3" fill="#2f80ed"/><text x="622" y="44">Forn. 01</text>
+    <rect x="690" y="32" width="14" height="14" rx="3" fill="#f59e0b"/><text x="712" y="44">Forn. 02</text>
+    <rect x="780" y="32" width="14" height="14" rx="3" fill="#12b76a"/><text x="802" y="44">Forn. 03</text>
+  </g>
+
+  <text x="70" y="104" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="800" fill="#172033">FA mensal (quanto maior, melhor)</text>
+  <g stroke="#eaecf0" stroke-width="1">
+    <line x1="90" y1="300" x2="830" y2="300"/>
+    <line x1="90" y1="247" x2="830" y2="247"/>
+    <line x1="90" y1="194" x2="830" y2="194"/>
+    <line x1="90" y1="141" x2="830" y2="141"/>
+  </g>
+  <g font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#667085">
+    <text x="58" y="304">0%</text>
+    <text x="52" y="251">20%</text>
+    <text x="52" y="198">40%</text>
+    <text x="52" y="145">60%</text>
+  </g>
+  <polyline points="90.0,175.2 136.2,262.9 182.5,219.8 228.8,238.3 275.0,165.1 321.2,217.7 367.5,257.3 413.8,178.3 460.0,210.9 506.2,164.5 552.5,157.7 598.8,139.1 645.0,139.2 691.2,155.6 737.5,185.5 783.8,152.9 830.0,139.2" fill="none" stroke="#2f80ed" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <polyline points="90.0,225.5 136.2,255.6 182.5,217.1 228.8,260.3 275.0,267.2 321.2,226.3 367.5,258.6 413.8,275.2 460.0,290.8 506.2,194.1 552.5,201.0 598.8,181.0 645.0,185.3 691.2,268.7 737.5,248.1 783.8,184.2 830.0,190.1" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <polyline points="90.0,300.0 136.2,231.4 182.5,282.4 228.8,300.0 275.0,210.0 321.2,227.3 367.5,300.0 413.8,300.0 460.0,300.0 506.2,231.4 552.5,244.0 598.8,255.7 645.0,292.4 691.2,300.0 737.5,300.0 783.8,300.0 830.0,209.8" fill="none" stroke="#12b76a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <g font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#667085">
+    <text x="90.0" y="324" text-anchor="middle">Fev/17</text>
+    <text x="182.5" y="324" text-anchor="middle">Abr</text>
+    <text x="275.0" y="324" text-anchor="middle">Jun</text>
+    <text x="367.5" y="324" text-anchor="middle">Ago</text>
+    <text x="460.0" y="324" text-anchor="middle">Out</text>
+    <text x="552.5" y="324" text-anchor="middle">Dez</text>
+    <text x="645.0" y="324" text-anchor="middle">Fev/18</text>
+    <text x="737.5" y="324" text-anchor="middle">Abr</text>
+    <text x="830.0" y="324" text-anchor="middle">Jun</text>
+  </g>
+
+  <text x="70" y="358" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="800" fill="#172033">Bias mensal</text>
+  <g stroke="#eaecf0" stroke-width="1">
+    <line x1="90" y1="478" x2="830" y2="478"/>
+    <line x1="90" y1="462" x2="830" y2="462" stroke="#98a2b3"/>
+    <line x1="90" y1="425" x2="830" y2="425"/>
+    <line x1="90" y1="372" x2="830" y2="372"/>
+  </g>
+  <g font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#667085">
+    <text x="45" y="466">0%</text>
+    <text x="38" y="429">+70%</text>
+    <text x="32" y="376">+170%</text>
+  </g>
+  <polyline points="90.0,459.7 136.2,439.2 182.5,444.6 228.8,440.8 275.0,470.2 321.2,444.8 367.5,440.8 413.8,453.4 460.0,462.9 506.2,475.3 552.5,462.5 598.8,464.3 645.0,467.8 691.2,459.3 737.5,448.0 783.8,470.0 830.0,464.8" fill="none" stroke="#2f80ed" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <polyline points="90.0,448.0 136.2,473.3 182.5,459.5 228.8,461.3 275.0,455.8 321.2,465.3 367.5,445.7 413.8,438.4 460.0,475.1 506.2,457.8 552.5,477.1 598.8,470.7 645.0,464.0 691.2,437.2 737.5,440.4 783.8,466.4 830.0,453.5" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <polyline points="90.0,376.6 136.2,451.6 182.5,431.6 228.8,427.5 275.0,445.1 321.2,444.5 367.5,398.0 413.8,419.1 460.0,440.1 506.2,441.6 552.5,436.5 598.8,430.6 645.0,423.4 691.2,415.8 737.5,413.5 783.8,427.5 830.0,437.7" fill="none" stroke="#12b76a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

@@ -249,6 +249,18 @@
       margin-top: 30px;
     }
 
+    .metric-note {
+      max-width: 980px;
+      margin: 0 0 24px;
+      padding: 18px 22px;
+      border-left: 5px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      background: #eaf3ff;
+      color: #1d4f8f;
+      font-size: clamp(1rem, 1.3vw, 1.16rem);
+      line-height: 1.45;
+    }
+
     .formula {
       min-height: 154px;
       padding: 20px;
@@ -546,6 +558,7 @@
       <div class="slide-inner">
         <p class="eyebrow">Parte 3 - Evaluation Metrics</p>
         <h2>Nenhuma métrica sozinha conta a história toda</h2>
+        <p class="metric-note">Usamos seis métricas porque previsão não é só “acertar mais”. Também precisamos entender direção do erro, erros extremos, estabilidade e impacto nos produtos mais importantes.</p>
         <div class="formula-grid">
           <div class="formula"><h3>WAPE</h3><code>Σ|real - previsto| / Σreal</code><p>Mostra o erro total em relação ao volume real total.</p></div>
           <div class="formula"><h3>FA</h3><code>max(0, 1 - WAPE)</code><p>É a acurácia da previsão. Quanto maior, melhor.</p></div>
@@ -553,6 +566,25 @@
           <div class="formula"><h3>MAE</h3><code>média |real - previsto|</code><p>Mostra o erro médio em unidades.</p></div>
           <div class="formula"><h3>RMSE</h3><code>sqrt(média erro²)</code><p>Penaliza erros muito grandes. Ajuda a achar falhas graves.</p></div>
           <div class="formula"><h3>Scorecard</h3><code>FA global + Classe A + campanha + Top-20 + consistência</code><p>Junta os critérios mais importantes para a decisão.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner chart-grid">
+        <div>
+          <p class="eyebrow">Parte 3 - Análise temporal</p>
+          <h2>Consistência também importa</h2>
+          <p class="lead">Um fornecedor pode parecer bom no total, mas oscilar muito mês a mês. Para planejamento, isso é arriscado: a equipe precisa de uma previsão confiável todo mês.</p>
+          <ul class="bullets">
+            <li>Fornecedor 01 tem mais meses com FA alta e fecha forte em 2018.</li>
+            <li>Fornecedor 02 melhora em alguns meses, mas tem quedas relevantes.</li>
+            <li>Fornecedor 03 tem muitos meses com FA zerada e Bias positivo recorrente.</li>
+          </ul>
+        </div>
+        <div class="chart-wrap">
+          <img class="chart" src="presentation_assets/temporal_consistency.svg" alt="FA e Bias mensais por fornecedor" />
+          <p class="caption">A leitura temporal reforça a decisão: o Fornecedor 01 não vence apenas no acumulado, ele se mantém mais útil ao longo dos meses.</p>
         </div>
       </div>
     </section>
@@ -665,7 +697,7 @@
     <div class="footer-mark">PoC Forecast · UX for Data Science</div>
     <nav class="nav" aria-label="Navegação da apresentação">
       <button id="prevBtn" type="button" aria-label="Slide anterior">‹</button>
-      <span class="counter" id="counter">1 / 12</span>
+      <span class="counter" id="counter">1 / 13</span>
       <button id="nextBtn" type="button" aria-label="Próximo slide">›</button>
     </nav>
   </main>
